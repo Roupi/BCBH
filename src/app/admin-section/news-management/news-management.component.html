@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto">
+      <h5 class="red-text">Gestion des News</h5>
+      <label for="newsList">News :
+        <button
+          class="btn btn- btn-light-green"
+          [routerLink]="['new']">
+          Ajouter une news</button>
+      </label>
+      <div id='newsList' class="list-group scroll">
+        <a class="list-group-item list-group-item-action flex-column align-items-start"
+           *ngFor="let El of news; let i = index;"
+           [routerLink]="[i]"
+           routerLinkActive="red darken-1 white-text"
+           (click)="selectedNewsPic = El.pictureRef">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+              <img
+                src="{{El.pictureRef}}"
+                width="70px"
+                height="70px"
+                class="img-fluid">
+              {{El.title}}
+            </h5>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-1"></div>
+    <div class="col-md-auto">
+      <br><br><br>
+      <img
+        *ngIf="(!(selectedNewsPic === 'new') && !(selectedNewsPic === '') && !(selectedNewsPic === 'NoPicture') && selectedNewsPic)"
+        src="{{selectedNewsPic}}"
+        width="400px"
+        class="img-fluid img-thumbnail">
+      <div *ngIf="((selectedNewsPic === '') || (!selectedNewsPic))">
+        <p style="color: dimgrey">
+          <br><br>
+          Sélectionnez une news dans la liste<br>
+          pour la modifier <br>
+          ou ajoutez une nouvelle news.
+        </p>
+      </div>
+      <div *ngIf="(selectedNewsPic === 'NoPicture')">
+        <p style="color: dimgrey">
+          <br><br>
+          Il n'y a pas de photo pour <br>
+          cette news.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>

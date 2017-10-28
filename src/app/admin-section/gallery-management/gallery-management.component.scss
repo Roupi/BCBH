@@ -1,0 +1,12 @@
+.tn {
+  margin:6px 6px;
+  border: 4px solid #eee;
+  box-shadow:#555 1px 1px 8px 1px;
+  cursor: pointer;
+  width: 200px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+  border: 1px solid red;
+}

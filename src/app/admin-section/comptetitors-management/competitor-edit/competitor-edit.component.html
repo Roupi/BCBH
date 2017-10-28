@@ -1,0 +1,167 @@
+<hr>
+<hr>
+<form [formGroup]="competitorForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="red-text" for="firstname">Nom : </label>
+            <input
+              type="text"
+              id="firstname"
+              formControlName="firstname"
+              class="form-control">
+            <span class="error red-text"
+                  style="font-size : x-small"
+                  *ngIf="competitorForm.get('firstname').invalid &&
+                        competitorForm.get('firstname').touched">
+              Ne doit contenir que des lettres <br>et au moins 2 caractères*
+            </span>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="red-text" for="lastname">Prénom : </label>
+            <input
+              type="text"
+              id="lastname"
+              formControlName="lastname"
+              class="form-control">
+            <span class="error red-text"
+                  style="font-size : x-small"
+                  *ngIf="competitorForm.get('lastname').invalid &&
+                        competitorForm.get('lastname').touched">
+              Ne doit contenir que des lettres <br>et au moins 2 caractères*
+            </span>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="red-text" for="category">Catégorie : </label><br><br>
+            <span class="error red-text"
+                  style="font-size : x-small"
+                  *ngIf="competitorForm.get('category').invalid &&
+                        competitorForm.get('category').touched">
+              Veuillez sélectionner une catégorie
+            </span>
+            <select name="category" id="category" formControlName="category">
+              <option
+                *ngFor="let cat of categories"
+                value="{{cat}}">{{cat}}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="pictureRef" class="upload-group red-text">Photo du compétiteur :</label>
+            <input type="file"
+                   id="pictureRef"
+                   formControlName="pictureRef"
+                   class="form-control"
+                   (change)="handlePicture($event)">
+          </div>
+        </div>
+          <div class="col-md-6">
+            <br>
+            <button class="btn btn-danger red dark-1"
+                    type="button"
+                    [disabled]="!files"
+                    (click)="uploadPicture()">Charger la photo</button>
+          </div>
+      </div>
+
+      <div class="row">
+        <label class="red-text">Résultats :   </label>
+      </div>
+      <div class="row" formArrayName="results">
+          <div
+            *ngFor="let resCtrl of competitorForm.get('results').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px; border-style: dashed;"
+            class="col-md-3">
+              <div class="col-md-1"></div>
+            <div class="col-md-11">
+            <input
+                type="text"
+                class="form-control"
+                formControlName="description">
+              <span class="error red-text"
+                    style="font-size : x-small"
+                    *ngIf="resCtrl.get('description').invalid &&
+                           resCtrl.get('description').touched">
+              Veuillez entrer une description*
+            </span>
+            </div>
+            <div class="col-md-6">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="year">
+              <span class="error red-text"
+                    style="font-size : x-small"
+                    *ngIf="resCtrl.get('description').invalid &&
+                           resCtrl.get('description').touched">
+                Veuillez entrer une année valide*
+              </span>
+            </div>
+            <div class="col-md-1">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteResult(i)">X</button>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+            <div class="col-md-12">
+              <br>
+              <button
+                type="button"
+                class="btn btn-light-green"
+                (click)="onAddResult()">Ajouter un résultat</button>
+            </div>
+      </div>
+
+
+
+      <div class="row">
+        <hr>
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-light-green"
+            [disabled]="!pictureLoaded || !competitorForm.valid">
+            Enregistrer</button>
+
+          <button
+            type="button"
+            class="btn btn-danger red dark-1"
+            (click)="onCancel()">
+            Annuler</button>
+        </div>
+      </div>
+
+      <div class="row">
+      <hr>
+        <div class="col-xs-12">
+          <button
+            type="button"
+            class="btn btn-danger red dark-A"
+            (click)="onDeleteCompetitor(id)">
+            Supprimer le compétiteur</button>
+        </div>
+      </div>
+
+    </form>
+
+

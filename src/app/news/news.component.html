@@ -1,0 +1,26 @@
+<div class="container">
+  <br><br>
+  <h1>Les dernières nouvelles du club</h1>
+  <hr>
+  <hr>
+  <div class="row">
+
+    <div *ngFor="let n of news">
+      <h2>{{n.title}}</h2>
+      <div class="col-md-auto">
+        <p>{{n.content}}</p>
+      </div>
+      <div class="col-md-auto">
+        <img
+          src="{{n.pictureRef}}"
+          width="200"
+          class="img-thumbnail"
+        >
+      </div>
+      <hr><hr>
+    </div>
+
+  </div>
+  <hr>
+  <hr>
+</div>

@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-auto">
+        <h5 class="red-text">Gestion des compétiteurs</h5>
+        <label for="competitorList">Compétiteurs :
+          <button
+            class="btn btn-light-green"
+            [routerLink]="['new']">
+            Ajouter un compétiteur</button>
+        </label>
+        <div id='competitorList' class="list-group scroll">
+          <a class="list-group-item list-group-item-action flex-column align-items-start"
+             *ngFor="let competitorEl of competitors; let i = index;"
+             [routerLink]="[competitorEl.id]"
+             routerLinkActive="red darken-1 white-text">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">
+                <img
+                  src="{{competitorEl.pictureRef}}"
+                  width="70px"
+                  height="70px"
+                  class="img-thumbnail">
+                {{competitorEl.firstname}} {{competitorEl.lastname}}
+              </h5>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-1"></div>
+      <div class="col-md-auto">
+        <br><br><br>
+        <img
+          *ngIf="(!(selectedCompPic === 'new') && !(selectedCompPic === '') && !(selectedCompPic === 'NoPicture') && selectedCompPic)"
+          src="{{selectedCompPic}}"
+          class="img-thumbnail"
+          width="200px">
+
+        <div *ngIf="((selectedCompPic === '') || (!selectedCompPic))">
+          <p style="color: dimgrey">
+            <br><br>
+            Sélectionnez un compétiteur dans la liste<br>
+            pour modifier ses informations <br>
+            ou ajoutez un nouveau compétiteur.
+          </p>
+        </div>
+        <div *ngIf="(selectedCompPic === 'NoPicture')">
+          <p style="color: dimgrey">
+            <br><br>
+            Il n'y a pas de photo pour <br>
+            ce compétiteur.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="row">
+        <router-outlet>
+        </router-outlet>
+      </div>
+
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <br><br>
+  <h1>Les résultats de nos compétiteurs</h1>
+  <hr>
+  <hr>
+  <div class="row" *ngFor="let yearRow of results; let i = index">
+    <h2 class="red-text">{{results[i].year}}</h2>
+    <br>
+    <ul>
+    <li *ngFor="let desc of results[i].descriptions; let j = index">
+      {{results[i].lastName[j]}} {{results[i].firstName[j]}} <span class="red-text">-</span> {{desc}} </li>
+    </ul>
+  </div>
+  <hr>
+  <hr>
+</div>

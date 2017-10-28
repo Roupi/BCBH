@@ -1,0 +1,90 @@
+<hr>
+<hr>
+<form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class= "red-text" for="title">Titre : </label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          class="form-control">
+        <span class="error red-text"
+              style="font-size : x-small"
+              *ngIf="newsForm.get('title').invalid &&
+                        newsForm.get('title').touched">
+              Veuillez insérer un titre*
+            </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <div class="form-group">
+        <label  class= "red-text" for="content">Contenu : </label>
+        <textarea rows="20"
+                  cols="80"
+                  style="height: 200px"
+                  id="content"
+                  formControlName="content"
+                  class="form-control" >
+        </textarea>
+        <span class="error red-text"
+              style="font-size : x-small"
+              *ngIf="newsForm.get('content').invalid &&
+                        newsForm.get('content').touched">
+              La news n'a pas d'intéret sans contenu, veuillez insérer un texte*
+            </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <div class="form-group">
+        <label for="pictureRef" class="upload-group red-text">Photo de l'article :</label>
+        <input type="file"
+               id="pictureRef"
+               formControlName="pictureRef"
+               class="form-control"
+               (change)="handlePicture($event)">
+        <button class="btn btn-danger red dark-1"
+                type="button"
+                [disabled]="!files"
+                (click)="uploadPicture()">Charger la photo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-xs-12">
+      <button
+        type="submit"
+        class="btn btn-light-green"
+        [disabled]="!pictureLoaded || !newsForm.valid">
+        Enregistrer</button>
+
+      <button
+        type="button"
+        class="btn btn-danger red dark-1"
+        (click)="onCancel()">
+        Annuler</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-xs-12">
+      <button type="button" class="btn btn-danger red dark-1" (click)="onDeleteNews(id)">Supprimer la news</button>
+    </div>
+  </div>
+
+</form>
+
+

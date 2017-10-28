@@ -1,0 +1,143 @@
+<hr>
+<hr>
+<form [formGroup]="responsableForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="red-text" for="firstname">Nom : </label>
+        <input
+          type="text"
+          id="firstname"
+          formControlName="firstname"
+          class="form-control">
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="red-text" for="lastname">Prénom : </label>
+        <input
+          type="text"
+          id="lastname"
+          formControlName="lastname"
+          class="form-control">
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="pictureRef" class="upload-group red-text">Photo du responsable :</label>
+        <input type="file"
+               id="pictureRef"
+               formControlName="pictureRef"
+               class="form-control"
+               (change)="handlePicture($event)">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <br>
+      <button class="btn btn-danger red dark-1"
+              type="button"
+              [disabled] = "!files"
+              (click)="uploadPicture()">Charger la photo</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <label class="red-text" for="history">Historique :</label>
+  </div>
+
+    <div class="row" formArrayName="history" id="history">
+      <div
+        *ngFor="let hisCtrl of responsableForm.get('history').controls; let i = index"
+        [formGroupName]="i"
+        style="margin-top: 10px; border-style: dashed;"
+        class="col-md-3">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+          <input
+            type="text"
+            id="description"
+            class="form-control"
+            formControlName="description">
+        </div>
+        <div class="col-md-1">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="onDeleteHistoryEl(i)">X</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-light-green"
+          (click)="onAddHistoryEl()">Ajouter un historique</button>
+      </div>
+    </div>
+
+  <div class="row">
+    <label class="red-text">Fonctions : </label>
+  </div>
+
+    <div class="row" formArrayName="functions">
+      <div
+        *ngFor="let funcCtrl of responsableForm.get('functions').controls; let i = index"
+        [formGroupName]="i"
+        style="margin-top: 10px; border-style: dashed;"
+        class="col-md-4">
+
+          <input
+            type="text"
+            class="form-control col-md-5"
+            formControlName="description">
+          <button
+            type="button"
+            class="btn btn-danger col-md-2"
+            (click)="onDeleteFunctionEl(i)">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <button
+        type="button"
+        class="btn btn-light-green"
+        (click)="onAddFunctionEl()">Ajouter une fonction</button>
+      </div>
+    </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-md-12">
+      <button
+        type="submit"
+        class="btn btn-light-green"
+        [disabled]="!pictureLoaded || !responsableForm.valid">
+        Enregistrer</button>
+
+      <button
+        type="button"
+        class="btn btn-danger red dark-A"
+        (click)="onCancel()">
+        Annuler</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-danger red dark-1" (click)="onDeleteResponsable(id)">Supprimer le responsable</button>
+    </div>
+  </div>
+
+</form>
+
+

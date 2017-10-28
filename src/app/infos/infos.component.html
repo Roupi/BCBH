@@ -1,0 +1,105 @@
+<div class="container">
+  <br><br>
+  <h1>À propos du club</h1>
+  <hr>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+    <ul style="list-style-type:none;">
+      <li><h3>Contacts : </h3></li>
+      <hr>
+      <li><span><h6 class="red-text">Mr. VANDALEM Alain : </h6> 0475/ 25 12 85</span></li>
+      <li><span><h6 class="red-text">Mr. VANDALEM Julien :  </h6> 0498/ 76 09 80</span></li>
+      <li><span><h6 class="red-text">Email : </h6> boxingclub.barvaux@gmail.com</span></li>
+    </ul>
+    </div>
+
+    <div class="col-md-6">
+    <ul style="list-style-type:none;">
+      <li><h3>Adresses et Horaires : </h3></li>
+      <hr>
+      <li><span>
+        Salle de l'ancienne piscine  <br>
+        rue petit barvaux 2 B <br>
+        6940 BARVAUX s/o <br>
+        <span class="red-text">Jeudi de 19h30 à 21h30</span>
+      </span></li>
+      <hr>
+      <li><span>
+        Hall omnisport <br>
+        rue du Moulin 10 B <br>
+        4180 HAMOIR <br>
+        <span class="red-text"> Lundi de 19h30 à 21h30</span>
+      </span></li>
+    </ul>
+    </div>
+
+    </div>
+  </div>
+<br><br>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto">
+      <label for="competitorList">
+        <h3>Les responsables du club :</h3>
+      </label>
+      <hr>
+      <div id='competitorList' class="list-group scroll">
+        <a class="list-group-item list-group-item-action flex-column align-items-start"
+           *ngFor="let resp of responsables; let i = index;"
+           [routerLink]="[resp.id]"
+           routerLinkActive="red darken-1 white-text">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+              <img
+                src="{{resp.pictureRef}}"
+                width="70"
+                height="70"
+                class="img-thumbnail"
+              >
+              {{resp.firstname}} {{resp.lastname}}
+            </h5>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<hr>
+<div class="container">
+  <div class="row">
+    <h3>Qu'est-ce que la boxe française ?</h3>
+  </div>
+
+  <div class="row">
+    <div>
+      La Boxe Française est un sport de combat utilisant les percussions pieds-poings. <br>
+      Les seules armes utilisées sont : <br>
+      <ul>
+      <li>Toutes les parties de la chaussure de Boxe Française.</li>
+      <li>La partie avant du gant recouvrant la main lorsqu'elle est fermée.</li>
+      </ul>
+      Les coups peuvent être portés sur toutes les parties du corps à l'exception de :
+      <ul>
+        <li>La nuque</li>
+        <li>Le triangle génital</li>
+        <li>La poitrine chez les femmes</li>
+      </ul>
+      Il y a 2 types de rencontres possibles :
+      <ul>
+        <li><span class="red-text">Le combat :</span> Où la recherche du KO est autorisée.</li>
+        <li><span class="red-text">L'assaut :</span> Où le KO est interdit et la puissance des coups doit être controlée.</li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <hr>
+  </div>
+

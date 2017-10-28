@@ -1,0 +1,74 @@
+<div class="container">
+  <h5 class="red-text">Gestion des Albums</h5>
+  <br>
+  <div *ngIf="albums">
+  <div class="row">
+    <div
+      *ngFor="let al of albums; let i = index;"
+      class="col-md-auto">
+      <div *ngFor="let img of al.pics | async let j = index"> <!-- TODO: Find a proper way to do this... -->
+        <div
+          *ngIf="j===0">
+          <label for="i">{{al.name}}</label>
+          <img
+            id="i"
+            src="{{img.url}}"
+            class="tn">
+        </div>
+      </div>
+        <br>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+  <div *ngIf="upload">
+    <div class="progress">
+      <div class="progress-bar progress-bar-animated"
+           [ngStyle]="{ 'width': upload?.progress + '%' }"></div>
+    </div>
+    Chargement: {{upload?.progress}}%
+  </div>
+  <div class="container">
+    <hr>
+    <h5 class="heading ">Ajouter un album</h5>
+    <div class="row">
+    <div class="col-md-4">
+      <form #uploadForm="ngForm">
+        <label class="red-text" for="albumname">Nom de l'album : </label>
+        <input type="text"
+           id="albumname"
+           [(ngModel)] = albumName name = albumName
+           required>
+        <span class="error red-text"
+              style="font-size : x-small"
+              *ngIf="uploadForm.invalid &&
+                        uploadForm.touched">
+              Veuillez insérer un titre*
+            </span>
+      </form>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+    <label class="red-text">Photos : </label>
+    <input type="file"
+           (change)="handleFiles($event)" multiple>
+    </div>
+    <div class="col-md-2">
+      <br>
+      <button class="btn btn-light-green"
+              style="float:right;"
+              [disabled] ="!files || !uploadForm.valid"
+              (click)="uploadFiles(albumName)">Ajouter</button>
+    </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <hr>
+  </div>
+</div>

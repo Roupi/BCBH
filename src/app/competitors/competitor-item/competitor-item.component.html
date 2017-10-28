@@ -1,0 +1,46 @@
+<div *ngIf="competitor">
+<div class="row">
+
+  <div class="col-md-auto">
+    <div class="row">
+      <div class="col-md-auto">
+        <h2> {{competitor.firstname}}
+          <br> {{competitor.lastname}}
+        </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <h5><span class="red-text">Catégorie : </span>{{competitor.category}}</h5>
+    </div>
+
+    <div class="row">
+      <div *ngIf="competitor.results.length>0; else noResults">
+        <hr>
+        <label for="results"><span class="grey-text">Résultats :</span></label>
+        <ul id="results" class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let r of competitor.results  |order:'year':false">
+            [{{r.year}}] <span class="red-text">-</span> {{r.description}}</li>
+        </ul>
+      </div>
+      <ng-template #noResults>
+        <br>
+        <p>{{competitor.lastname}} n'a pas encore de résultats <span class="red-text">:(</span></p>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="col-md-auto">
+    <img
+      src="{{competitor.pictureRef}}"
+      width="300"
+      class="img-thumbnail"
+    >
+  </div>
+
+</div>
+
+</div>
+

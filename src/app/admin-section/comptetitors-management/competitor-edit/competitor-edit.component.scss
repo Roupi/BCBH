@@ -1,0 +1,10 @@
+.scroll{
+  max-height: 220px;
+  overflow-y:scroll;
+}
+
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+  border: 1px solid red;
+}

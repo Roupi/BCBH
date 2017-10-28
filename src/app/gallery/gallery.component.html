@@ -1,0 +1,24 @@
+<div class="container">
+  <br><br>
+  <h1>Nos photos</h1>
+  <hr>
+  <hr>
+<div class="row">
+  <ul id="thumbnailsList">
+    <li *ngFor="let alb of albums" class="img">
+      <a *ngIf="alb">
+        {{alb.name}}
+        <ul id="thumbnailsList">
+          <li *ngFor="let image of alb.pics | async" class="img">
+            <a [routerLink]="['/image/',alb.name+'/'+image.$key]">
+              <img src="{{image.url}}" class="tn">
+            </a>
+          </li>
+        </ul>
+      </a>
+    </li>
+  </ul>
+</div>
+  <hr>
+  <hr>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto">
+      <h5 class="red-text">Gestion des responsables</h5>
+      <label for="responsablesList">Responsables :
+        <button
+          class="btn btn- btn-light-green"
+          [routerLink]="['new']">
+          Ajouter un responsable</button>
+      </label>
+      <div id='responsablesList' class="list-group scroll">
+        <a class="list-group-item list-group-item-action flex-column align-items-start"
+           *ngFor="let responsableEl of responsables; let i = index;"
+           [routerLink]="[responsableEl.id]"
+           routerLinkActive="red darken-1 white-text"
+           (click)="selectedResponsablePic = responsableEl.pictureRef;">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+              <img
+                src="{{responsableEl.pictureRef}}"
+                width="70px"
+                height="70px"
+                class="img-thumbnail">
+              {{responsableEl.firstname}} {{responsableEl.lastname}}
+            </h5>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-1"></div>
+    <div class="col-md-auto">
+      <br><br><br>
+      <img *ngIf="( !(selectedResponsablePic === 'new') &&
+                    !(selectedResponsablePic === '') &&
+                    !(selectedResponsablePic === 'NoPicture') &&
+                    selectedResponsablePic)"
+        src="{{selectedResponsablePic}}"
+        class="img-thumbnail"
+        width="200px">
+
+      <div *ngIf="((selectedResponsablePic === '') || (!selectedResponsablePic))">
+        <p style="color: dimgrey">
+          <br><br>
+          Sélectionnez un responsable dans la liste<br>
+          pour modifier ses informations <br>
+          ou ajoutez un nouveau responsable.
+        </p>
+      </div>
+      <div *ngIf="(selectedResponsablePic === 'NoPicture')">
+        <p style="color: dimgrey">
+          <br><br>
+          Il n'y a pas de photo pour <br>
+          ce responsable.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

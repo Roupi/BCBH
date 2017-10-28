@@ -1,0 +1,48 @@
+<div *ngIf="responsable">
+  <div class="row">
+
+    <div class="col-md-auto">
+      <div class="row">
+        <div class="col-md-auto">
+          <h2> {{responsable.firstname}}
+            <br> {{responsable.lastname}}
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div *ngIf="responsable.functions.length>0;">
+          <label for="functions"><h5><span class="red-text">Fonctions :</span></h5></label>
+          <div id="functions" class="list-group">
+            <p
+              *ngFor="let func of responsable.functions">
+              <span class="red-text">-</span> {{func.description}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div *ngIf="responsable.history.length>0;">
+          <label for="history"><h5><span class="red-text">Historique :</span></h5></label>
+          <div id="history" class="list-group">
+            <p
+              *ngFor="let hist of responsable.history  |order:'year':false">
+              <span class="red-text">-</span> {{hist.description}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-auto">
+      <img
+        src="{{responsable.pictureRef}}"
+        width="300"
+        class="img-thumbnail"
+      >
+    </div>
+
+  </div>
+
+</div>
+

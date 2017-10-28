@@ -1,0 +1,35 @@
+<div class="container">
+  <br><br>
+  <h1>Nos compétiteurs</h1>
+  <hr>
+  <hr>
+<div class="row">
+<div class="col-md-auto">
+  <label for="competitorList">Sélectionnez un compétiteur :</label>
+  <div id='competitorList' class="list-group">
+    <a class="list-group-item list-group-item-action flex-column align-items-start"
+       *ngFor="let competitorEl of competitors; let i = index;"
+       [routerLink]="[competitorEl.id]"
+       routerLinkActive="red darken-1 white-text">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+          <img
+            src="{{competitorEl.pictureRef}}"
+            width="70"
+            height="70"
+           class="img-thumbnail"
+          >
+          {{competitorEl.firstname}} {{competitorEl.lastname}}
+        </h5>
+      </div>
+    </a>
+  </div>
+</div>
+  <div class="col-md-1"></div>
+  <div class="col-md-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+  <hr>
+  <hr>
+</div>

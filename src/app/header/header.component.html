@@ -1,0 +1,51 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/bcbh-4b8a4.appspot.com/o/brand.png?alt=media&token=8d38f34a-f99b-476d-982f-168e9af93a02"
+      height="40" alt="">
+  </a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/news">News</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/competiteurs">Compétiteurs</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/photos">Photos</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/resultats">Resultats</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/infos">INFOS</a>
+      </li>
+    </ul>
+    <ul style="float: right;">
+      <li class="nav-item">
+        <a
+          *ngIf="(user|async)?.uid"
+          class="nav-link red-text"
+          (click)="onLogout()"
+          routerLink="/home">
+          <u>Se déconnecter</u></a>
+      </li>
+    </ul>
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
